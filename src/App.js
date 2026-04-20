@@ -1,24 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { UserProvider } from "./context/UserContext";
+
+import Login from "./pages/Login";
+import Dashboard from "./pages/Dashboard";
+import Greenhouse from "./pages/Greenhouse";
+import Activities from "./pages/Activities";
+import Calendar from "./pages/Calendar";
+import Irrigation from "./pages/Irrigation";
+import Reports from "./pages/Reports";
+import Register from "./pages/Register";
+import ForgotPassword from "./pages/ForgotPassword";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <UserProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Dashboard />} />
+          {/* CORE SYSTEM */}
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/greenhouse" element={<Greenhouse />} />
+          <Route path="/activities" element={<Activities />} />
+
+          {/* AGRICULTURE MODULES */}
+          <Route path="/calendar" element={<Calendar />} />
+          <Route path="/irrigation" element={<Irrigation />} />
+          <Route path="/reports" element={<Reports />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} /> 
+          <Route path="/login" element={<Login />} />
+        </Routes>
+      </BrowserRouter>
+    </UserProvider>
   );
 }
 
